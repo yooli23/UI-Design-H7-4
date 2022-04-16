@@ -15,3 +15,7 @@ Solid-Net Transformation.
 - python3 -m pip install flask
 - cd app/
 - python3 app.py
+
+## Branches:
+- main - will merge with dev at the end of every week
+- dev - will be used to branch out and merge weekly tasks (e.g. paata-test-page branches out of dev and merges back once the task is finished) 
