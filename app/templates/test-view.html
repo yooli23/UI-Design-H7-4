@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script>
+    let data = {{data|tojson}};
+    console.log(data);
+    $(document).ready(() => {
+        // map corresponding text and image to the test question
+        $("#question-text").text(data["question_text"]);
+        $("#question-img").attr('src', `/static/${data["question_imgs"][0]}`);
+    });
+</script>
+<h4 class="center"></h4>
+<div class="row">
+    <div class="col s12 m12 l6 center">
+        <div class="container">
+            <div class="row">
+                <div class="col s12"><span id="question-text"></span></div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <img id="question-img" src="" alt="" width="500" height="500">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6 center">
+        multiple choice filler
+    </div>
+</div>
+
+{% endblock %}
