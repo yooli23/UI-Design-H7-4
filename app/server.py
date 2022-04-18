@@ -91,10 +91,16 @@ def test_idx(idx):
     global test_data
     global test_scores
     test = None
-    if int(idx) < len(test_data):
+    if (int(idx) < len(test_data)) and (int(idx) > 0):
         test = test_data[int(idx)]
-    if int(idx) == 0:
+    else:
         test_scores = 0  # start from 0 scores
+        test = test_data[0]
+    if len(test_data)-1 == int(idx):
+        test["last"] = True
+    else:
+        test["last"] = False
+    test["id"] = int(idx)
     return render_template('test-view.html', data=test)
 
 @app.route('/test_finish')
