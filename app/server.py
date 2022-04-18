@@ -30,8 +30,7 @@ test_data = [
     {
         'question_text': 'Given following two nets representing the same cube. \n' + 
         'Which face in the second net should be blue?',
-        'question_imgs': ['test-images/test4_1.jpg',
-                          'test-images/test4_2.jpg'],
+        'question_imgs': ['test-images/test4.jpg'],
         'answer_texts': ['1', '2', '5', '6']
     }
 ]
