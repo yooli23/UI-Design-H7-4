@@ -9,6 +9,14 @@
         // map corresponding text and image to the test question
         $("#question-text").text(data["question_text"]);
         $("#question-img").attr('src', `/static/${data["question_imgs"][0]}`);
+        if (data["last"]){
+            $("#next-test").text("Submit Test");
+            // add link to next exercise
+            $("#next-test").attr('href', `/test`);
+        }else{
+            // add link to next exercise
+            $("#next-test").attr('href', `/test/${parseInt(data["id"])+1}`);
+        }
     });
 </script>
 <h4 class="center"></h4>
@@ -27,6 +35,13 @@
     </div>
     <div class="col s12 m12 l6 center">
         multiple choice filler
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href="" id="next-test" class="waves-effect waves-light btn blue">
+        Next Question
+        </a>
     </div>
 </div>
 
