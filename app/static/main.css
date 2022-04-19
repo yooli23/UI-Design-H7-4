@@ -32,6 +32,20 @@ li{
     position: relative;
 }
 
+/* test page */
+[type="radio"]:checked + span::after, [type="radio"].with-gap:checked + span::after {
+    background-color: rgb(4, 141, 242) !important;
+}
+
+[type="checkbox"].filled-in:checked + span:not(.lever)::after {
+    border: 2px solid rgb(4, 141, 242) !important;
+    background-color: rgb(4, 141, 242) !important;
+}
+
+.test-message{
+    position: absolute;
+    right: 45px;
+}
 
 /* cube */
 .cube-container {
