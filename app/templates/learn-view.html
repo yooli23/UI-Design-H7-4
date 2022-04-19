@@ -7,9 +7,12 @@
   console.log(data);
   $(document).ready(() => {
     $("h4").text(data["name"]);
-    if (parseInt(data["id"]) === 1){
+    if (parseInt(data["id"]) === 0){
       // remove last-net button for first exercise
       $("#last-net").remove();
+    }else if(data["last"]){
+      // remove next-net button from last learning exercise
+      $("#next-net").remove();
     }else{
       // add link to previous exercise
       $("#last-net").attr('href', `/learn/${parseInt(data["id"])-1}`);

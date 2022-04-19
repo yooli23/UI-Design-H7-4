@@ -11,44 +11,52 @@ test_data = [
         'question_text': 'If the face within red box is the bottom, ' +
                          'which one correctly indicates the top face?',
         'question_imgs': ['test-images/test1.jpg'],
-        'answer_imgs': ['test-images/test1_a.jpg',
+        'answer_options': ['test-images/test1_a.jpg',
                         'test-images/test1_b.jpg',
-                        'test-images/test1_c.jpg']
+                        'test-images/test1_c.jpg'],
+        'image_answer': True,
+        'radio': True
     },
     {
         'question_text': 'Select all correct nets of cube from below:',
         'question_imgs': ['test-images/test2.jpg'],
-        'answer_texts': ['1', '2', '3', '4', '5', '6', '7', '8']
+        'answer_options': ['1', '2', '3', '4', '5', '6', '7', '8'],
+        'image_answer': False,
+        'radio': False
     },
     {
         'question_text': 'Which is a possible net of this cube? \nRemark: grey means unkown.',
         'question_imgs': ['test-images/test3.jpg'],
-        'answer_imgs': ['test-images/test3_a.jpg',
+        'answer_options': ['test-images/test3_a.jpg',
                         'test-images/test3_b.jpg',
-                        'test-images/test3_c.jpg']
+                        'test-images/test3_c.jpg'],
+        'image_answer': True,
+        'radio': True
     },
     {
         'question_text': 'Given following two nets representing the same cube. \n' + 
         'Which face in the second net should be blue?',
         'question_imgs': ['test-images/test4.jpg'],
-        'answer_texts': ['1', '2', '5', '6']
+        'answer_options': ['1', '2', '5', '6'],
+        'image_answer': False,
+        'radio': True
     }
 ]
 # store data for learning exercises
 learn_data = {
-    1: {"name": "Net 1", "id": 1, "net_image": "learn-images/net1.jpg",
+    0: {"name": "Net 1", "id": 0, "net_image": "learn-images/net1.jpg",
         "transform_gif": "learn-images/net1-transform.gif"},
-    2: {"name": "Net 2", "id": 2, "net_image": "learn-images/net2.jpg",
+    1: {"name": "Net 2", "id": 1, "net_image": "learn-images/net2.jpg",
         "transform_gif": "learn-images/net2-transform.gif"},
-    3: {"name": "Net 3", "id": 3, "net_image": "learn-images/net3.jpg",
+    2: {"name": "Net 3", "id": 2, "net_image": "learn-images/net3.jpg",
         "transform_gif": "learn-images/net3-transform.gif"},
-    4: {"name": "Net 4", "id": 4, "net_image": "learn-images/net4.jpg",
+    3: {"name": "Net 4", "id": 3, "net_image": "learn-images/net4.jpg",
         "transform_gif": "learn-images/net4-transform.gif"},
-    5: {"name": "Net 5", "id": 5, "net_image": "learn-images/net5.jpg",
+    4: {"name": "Net 5", "id": 4, "net_image": "learn-images/net5.jpg",
         "transform_gif": "learn-images/net5-transform.gif"},
-    6: {"name": "Net 6", "id": 6, "net_image": "learn-images/net6.jpg",
+    5: {"name": "Net 6", "id": 5, "net_image": "learn-images/net6.jpg",
         "transform_gif": "learn-images/net6-transform.gif"},
-    7: {"name": "Net 7", "id": 7, "net_image": "learn-images/net7.jpg",
+    6: {"name": "Net 7", "id": 6, "net_image": "learn-images/net7.jpg",
         "transform_gif": "learn-images/net7-transform.gif"}
 }
 # store data for visited pages
@@ -78,7 +86,13 @@ def learn_idx(idx):
     global learn_data
     visited[int(idx)] = 1
     test_scores = 0  # prevent jumping from test to other pages
-    return render_template('learn-view.html', data=learn_data[int(idx)])
+    learn = learn_data[int(idx)]
+    # track when last learn exercise is reached
+    if len(learn_data)-1 == int(idx):
+        learn["last"] = True
+    else:
+        learn["last"] = False
+    return render_template('learn-view.html', data=learn)
 
 @app.route('/test')
 def test():
@@ -95,6 +109,7 @@ def test_idx(idx):
     else:
         test_scores = 0  # start from 0 scores
         test = test_data[0]
+    # track when last test question is reached
     if len(test_data)-1 == int(idx):
         test["last"] = True
     else:
@@ -105,7 +120,8 @@ def test_idx(idx):
 @app.route('/test_finish')
 def test_finish():
     global test_scores
-    return render_template('test_finish.html', score=test_scores)
+    print(test_scores)
+    return render_template('test_finish.html', data={"score" : str(100*test_scores/float(len(test_data)))})
 
 
 # possible ajex function
