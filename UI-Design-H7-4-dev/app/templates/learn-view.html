@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script>
+  let data = {{data|tojson}};
+  console.log(data);
+  $(document).ready(() => {
+    $("h4").text(data["name"]);
+    if (parseInt(data["id"]) === 0){
+      // remove last-net button for first exercise
+      $("#last-net").remove();
+    }else if(data["last"]){
+      // remove next-net button from last learning exercise
+      $("#next-net").remove();
+    }else{
+      // add link to previous exercise
+      $("#last-net").attr('href', `/learn/${parseInt(data["id"])-1}`);
+    }
+    // add link to next exercise
+    $("#next-net").attr('href', `/learn/${parseInt(data["id"])+1}`);
+
+    // map corresponding images to learning exercises
+    $("#learn-gif").attr('src', `/static/${data["transform_gif"]}`);
+    $("#learn-img").attr('src', `/static/${data["net_image"]}`);
+    $("#learn-title").text(`${data["name"]} exercise`);
+    
+  });
+  </script>
+<h4 class="center learn-title"></h4>
+<div class="row">
+  <div class="col s12 m12 l12 center">
+      <div class="imgfluid">
+          <div class="col s12 m12 l4">
+              <img id="learn-img" src="" alt="" width="500" height="500">
+          </div>
+          <div class="col s12 m12 l4">
+          </div>
+          <div class="col s12 m12 l4">
+              <img id="learn-gif" src="" alt="" width="500" height="500">
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <a href="/learn" class="waves-effect waves-light btn blue">
+      Back
+    </a>
+  </div>
+  <div class="col">
+    <a href="" id="last-net" class="waves-effect waves-light btn blue">
+      Last Net
+    </a>
+  </div>
+  <div class="col">
+    <a href="" id="next-net" class="waves-effect waves-light btn blue">
+      Next Net
+    </a>
+  </div>
+</div>
+
+
+{% endblock %}
