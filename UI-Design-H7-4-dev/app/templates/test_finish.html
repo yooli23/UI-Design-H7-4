@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script>
+    let data = {{data|tojson}};
+    console.log(data);
+    $(document).ready(() => {
+        $("#score").text(`Your Score: ${data["score"]}%`);
+    });
+</script>
+<div class="container center">
+    <h4 id="score"></h4>
+</div>
+{% endblock %}

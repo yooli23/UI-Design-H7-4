@@ -8,7 +8,6 @@
     $(document).ready(() => {
         // map corresponding text and image to the test question
         $("#question-text").text(data["question_text"]);
-        $('#submit-mesg').hide();
         $("#question-img").attr('src', `/static/${data["question_imgs"][0]}`);
         if (data["last"]){
             $("#next-test").text("Get Score");
@@ -21,7 +20,7 @@
         // record score after submit and display correct answer
         $("#submit").click(function(e) {
             e.preventDefault();
-            $('#submit-mesg').hide();
+            $("#submit").addClass("disabled");
             let answers = [];
             if (data["radio"]){
                 answers = [parseInt($('input[type="radio"]:checked').val())];
@@ -30,11 +29,6 @@
                     answers.push(parseInt($(this).val()));
                 });
             }
-            if (isNaN(answers[0])) {
-                $('#submit-mesg').show();
-                return;
-            }
-            $("#submit").addClass("disabled");
             let data_to_save = {index: data["id"], answers}
             console.log(data_to_save);
             $.ajax({
@@ -47,7 +41,7 @@
                     console.log(result);
                     if (data["radio"]){
                         let ix = answers[0];
-                        if (parseInt(result["correct"]) == 1){
+                        if (parseInt(result["correct"]) === 1){
                             $(`#${ix}`).text("Correct!");
                             $(`#${ix}`).addClass("green-text");
                         }else{
@@ -57,7 +51,7 @@
                             $(`#${result["correct_answer"][0]}`).addClass("green-text");
                         }
                     }else{
-                        if (parseInt(result["correct"]) == 1){
+                        if (parseInt(result["correct"]) === 1){
                             answers.forEach(ix =>{
                                 $(`#${ix}`).text("Correct!");
                                 $(`#${ix}`).addClass("green-text");
@@ -92,7 +86,7 @@
                         <span id="${ix}" class="test-message"></span>
                         <label>
                             <input name="group" value="${ix}" type="radio" />
-                            <span><img src="/static/${option}" alt="" width="210" height="140"></span>
+                            <span><img src="/static/${option}" alt="" width="200" height="200"></span>
                         </label>
                     </p>
                     `);
@@ -118,7 +112,7 @@
                         <span id="${ix}" class="test-message"></span>
                         <label>
                             <input name="group" value="${ix}" class="filled-in" type="checkbox" />
-                            <span><img src="/static/${option}" alt="" width="210" height="140"></span>
+                            <span><img src="/static/${option}" alt="" width="200" height="200"></span>
                         </label>
                     </p>
                     `);
@@ -148,7 +142,7 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    <img id="question-img" src="" alt="" width="510" height="340">
+                    <img id="question-img" src="" alt="" width="500" height="500">
                 </div>
             </div>
         </div>
@@ -164,14 +158,9 @@
         </a>
     </div>
     <div class="col">
-        <div class="row">
-            <a href="" id="submit" class="waves-effect waves-light btn blue">
-            Submit
-            </a>
-        </div>
-        <div class="row">
-            <span id="submit-mesg" class="red-text">Selection needed!</span>
-        </div>
+        <a href="" id="submit" class="waves-effect waves-light btn blue">
+        Submit
+        </a>
     </div>
 </div>
 

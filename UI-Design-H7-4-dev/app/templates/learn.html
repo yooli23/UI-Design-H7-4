@@ -8,7 +8,16 @@
             console.log(key);
             $(`#${key}`).append(`<i class="check-icon material-icons black-text">check</i>`);
         })
+
+/*
+        $("#reset").click(function(e){
+            Object.keys(visited).forEach(key => {
+                $(`#${key}`).remove(`<i class="check-icon material-icons black-text">check</i>`); 
+            }
+       }
+*/
     });
+   
 </script>
 <div class="row">
 
@@ -59,12 +68,22 @@
                     <a href="/learn/6" id="6" class="relative waves-effect waves-light btn blue btn-large">
                         Net 7
                     </a>
+                </div>           
+                    <div class="col s8 m8 l8">
+                     <!--  <div class="grey-testbtn">--> 
+                        <a href="/test" class="waves-effect waves-light btn grey btn-large btn-block" >
+                           Test          
+                     </a>
+                   <!-- </div>--> 
                 </div>
-                <div class="col s8 m8 l8">
-                    <a href="/test" class="waves-effect waves-light btn grey btn-large test-btn">
-                        Test
-                    </a>
-                </div>
+             </div>
+             <div class="row">
+                 <div class="col-4">
+                    <a href="/learn" id="reset" class="waves-effect waves-light btn grey btn-small btn-block" >
+                        reset          
+                  </a>
+                 </div>
+             </div>
             </div>
         </div>
     </div>
@@ -72,3 +91,5 @@
 </div>
 
 {% endblock %}
+
+<!--- class="waves-effect waves-light btn grey btn-large "  -->

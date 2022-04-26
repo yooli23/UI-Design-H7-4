@@ -44,7 +44,7 @@ li{
 
 .test-message{
     position: absolute;
-    right: 15px;
+    right: 45px;
 }
 
 /* cube */
@@ -101,10 +101,26 @@ li{
     position: relative;
     animation: spin 15s infinite linear;
 }
-  
-.test-btn {
-    width: 100%;
-    height: 100%;
+
+.imgfluid {
+    position:relative;
 }
+.test-intro{
+    color: rgb(4, 141, 242);
+    border: 1px solid darkslateblue;
+    padding: 20px;
+    margin: 50px;
+}
+.start-btn{
+    margin-left:40%;
+
+}
+/*.grey-testbtn{
+    background-color: grey;
+    border-radius: 2px;
+    font-size: x-large;
+
+}
+*/
     
   
