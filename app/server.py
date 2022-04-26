@@ -45,19 +45,19 @@ test_data = [
 # store data for learning exercises
 learn_data = {
     0: {"name": "Net 1", "id": 0, "net_image": "learn-images/net1.jpg",
-        "transform_gif": "learn-images/net1-transform.gif"},
+        "transform_gif": "learn-images/net1-transform.gif", 'material_id': 'xbxm7eua'},
     1: {"name": "Net 2", "id": 1, "net_image": "learn-images/net2.jpg",
-        "transform_gif": "learn-images/net2-transform.gif"},
+        "transform_gif": "learn-images/net2-transform.gif", 'material_id': 'ca9wnm9c'},
     2: {"name": "Net 3", "id": 2, "net_image": "learn-images/net3.jpg",
-        "transform_gif": "learn-images/net3-transform.gif"},
+        "transform_gif": "learn-images/net3-transform.gif", 'material_id': 'wfcygbpj'},
     3: {"name": "Net 4", "id": 3, "net_image": "learn-images/net4.jpg",
-        "transform_gif": "learn-images/net4-transform.gif"},
+        "transform_gif": "learn-images/net4-transform.gif", 'material_id': 'jwy7td7p'},
     4: {"name": "Net 5", "id": 4, "net_image": "learn-images/net5.jpg",
-        "transform_gif": "learn-images/net5-transform.gif"},
+        "transform_gif": "learn-images/net5-transform.gif", 'material_id': 'mtkeykrd'},
     5: {"name": "Net 6", "id": 5, "net_image": "learn-images/net6.jpg",
-        "transform_gif": "learn-images/net6-transform.gif"},
+        "transform_gif": "learn-images/net6-transform.gif", 'material_id': 'zas2z9xd'},
     6: {"name": "Net 7", "id": 6, "net_image": "learn-images/net7.jpg",
-        "transform_gif": "learn-images/net7-transform.gif"}
+        "transform_gif": "learn-images/net7-transform.gif", 'material_id': 'vkqxgp9e'}
 }
 # store data for visited pages
 visited = dict()
