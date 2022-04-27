@@ -106,5 +106,14 @@ li{
     width: 100%;
     height: 100%;
 }
+#imgfluid {
+    position: relative;
+}
+#question-text {
+    font-size: x-large;
+}
+.reset-btn{
+    width: 40%;
+}
     
   
