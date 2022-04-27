@@ -120,10 +120,12 @@ li{
   
 
 .test-intro{
-    color: rgb(4, 141, 242);
-    border: 1px solid darkslateblue;
+    /* color: rgb(4, 141, 242); */
+    /* border: 1px solid darkslateblue; */
+    border: none !important;
     padding: 20px;
     margin: 50px;
+    font-size: 1.5rem;
 }
 .start-btn{
     margin-left:40%;
