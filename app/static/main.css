@@ -142,6 +142,7 @@ li{
 
 #test-title {
     color: grey;
+    font-size: 30px;
 }
 .reset:hover {
     background-color: silver !important;

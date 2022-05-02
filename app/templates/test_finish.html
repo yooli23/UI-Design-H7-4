@@ -5,7 +5,7 @@
     let data = {{data|tojson}};
     console.log(data);
     $(document).ready(() => {
-        $("#score").text(`Your Score: ${data["score"]}%`);
+        $("#score").append(`<span style="color: dimgrey">Your Score: <span style='color: #101010;font-weight:bold'>${data["score"]}%</span></span>`);
     });
 </script>
 <div class="container center">
