@@ -104,9 +104,15 @@
                                 $(`#${ix}`).text("Wrong! Try again!");
                                 $(`#${ix}`).addClass("red-text");
                             });
+                            let isEqual = (JSON.stringify(answers.sort()) === JSON.stringify(result["correct_answer"].sort()));
                             result["correct_answer"].forEach(ix =>{
-                                $(`#${ix}`).text("Correct!");
-                                $(`#${ix}`).addClass("green-text");
+                                if ($(`#${ix}`).text() == "Wrong! Try again!" && !isEqual) {
+                                    $(`#${ix}`).text("Partially Correct!");
+                                    $(`#${ix}`).addClass("orange-text");
+                                } else {
+                                    $(`#${ix}`).text("Correct!");
+                                    $(`#${ix}`).addClass("green-text");
+                                }
                             });
                         }
                     }
@@ -176,7 +182,7 @@
         }
     });
 </script>
-<h4 class="row" id='test-title'></h4>
+<div class="row"><div class='col' id='test-title'></div></div>
 <div id="dialog" title="Next Page?">
     <p>Are you sure you want to give up this question and go to the next page?<br>You <span style='color:black;font-weight:bold'>CANNOT</span> go back to this question once confirmed.</p>
 </div>
