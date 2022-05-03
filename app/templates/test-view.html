@@ -4,9 +4,12 @@
 
 <script>
     let data = {{data|tojson}};
+    var submitted = false;
     console.log(data);
     $(document).ready(() => {
+        submitted = false;
         // map corresponding text and image to the test question
+        $('#test-title').text('Test '+(parseInt(data["id"])+1).toString()+'/4');
         $("#question-text").text(data["question_text"]);
         $('#submit-mesg').hide();
         $("#question-img").attr('src', `/static/${data["question_imgs"][0]}`);
@@ -18,6 +21,39 @@
             // add link to next exercise
             $("#next-test").attr('href', `/test/${parseInt(data["id"])+1}`);
         }
+        $("#dialog").dialog({
+            dialogClass: "no-close custom-ui-widget",
+            autoOpen: false,
+            closeOnEscape: false,
+            buttons: [
+                {
+                    text: "Yes",
+                    class: 'btn white widget-yes',
+                    click: function() {
+                        $( this ).dialog( "close" );
+                        window.location.href = $("#next-test").attr('href');
+                    
+                    }
+                },
+                {
+                    text: "No",
+                    class: "btn blue",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    
+                    }
+                }
+            ]
+        
+        });
+        $("#next-test").click(function(e) {
+            e.preventDefault();
+             if (!submitted) {
+                $("#dialog").dialog("open");
+             } else {
+                 window.location.href = $(this).attr('href');
+             }
+        });
         // record score after submit and display correct answer
         $("#submit").click(function(e) {
             e.preventDefault();
@@ -34,6 +70,7 @@
                 $('#submit-mesg').show();
                 return;
             }
+            submitted = true;
             $("#submit").addClass("disabled");
             let data_to_save = {index: data["id"], answers}
             console.log(data_to_save);
@@ -67,9 +104,15 @@
                                 $(`#${ix}`).text("Wrong! Try again!");
                                 $(`#${ix}`).addClass("red-text");
                             });
+                            let isEqual = (JSON.stringify(answers.sort()) === JSON.stringify(result["correct_answer"].sort()));
                             result["correct_answer"].forEach(ix =>{
-                                $(`#${ix}`).text("Correct!");
-                                $(`#${ix}`).addClass("green-text");
+                                if ($(`#${ix}`).text() == "Wrong! Try again!" && !isEqual) {
+                                    $(`#${ix}`).text("Partially Correct!");
+                                    $(`#${ix}`).addClass("orange-text");
+                                } else {
+                                    $(`#${ix}`).text("Correct!");
+                                    $(`#${ix}`).addClass("green-text");
+                                }
                             });
                         }
                     }
@@ -139,10 +182,12 @@
         }
     });
 </script>
-<h4 class="center"></h4>
+<div class="row"><div class='col' id='test-title'></div></div>
+<div id="dialog" title="Next Page?">
+    <p>Are you sure you want to give up this question and go to the next page?<br>You <span style='color:black;font-weight:bold'>CANNOT</span> go back to this question once confirmed.</p>
+</div>
 <div class="row">
-    <div class="col s12 m12 l6 center">
-        <div class="container">
+    <div class="col s12 m12 l6">
             <div class="row">
                 <div class="col s12"><span id="question-text"></span></div>
             </div>
@@ -151,12 +196,13 @@
                     <img id="question-img" src="" alt="" width="510" height="340">
                 </div>
             </div>
-        </div>
     </div>
     <div class="col s12 m12 l6 center">
         <div id="options"></div>
     </div>
 </div>
+<br>
+<br>
 <div class="row">
     <div class="col">
         <a href="" id="next-test" class="waves-effect waves-light btn blue">
@@ -165,7 +211,7 @@
     </div>
     <div class="col">
         <div class="row">
-            <a href="" id="submit" class="waves-effect waves-light btn blue">
+            <a href="" id="submit" class="waves-effect waves-light btn green">
             Submit
             </a>
         </div>

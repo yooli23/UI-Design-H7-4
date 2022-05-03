@@ -1,10 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container center">
-    <h4>You need to answer 4 questions, enjoy!</h4>
+<div class='container center'>
+    <div class="test-intro">
+        You will now take a short <span style='color:#101010;font-size:28px;font-weight:bold'>Test</span> on Solid Net. 
+        <br>This test will <span style='color:#101010;font-size:28px;font-weight:bold'>NOT</span> be timed, you are welcome to take as you need.
+        <br>You'll receive a score at the end.
+        <br>Feel free to click <span style='color:#101010;font-size:28px;font-weight:bold'>Learn Cube</span> and review the nets!
+    </div>
+    <div class="start-btn">
     <a href="/test/0"class="waves-effect waves-light btn blue">
         Start Test
     </a>
+    </div>
 </div>
+
+
 {% endblock %}

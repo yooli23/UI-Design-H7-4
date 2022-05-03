@@ -79,6 +79,12 @@ def learn():
     global visited
     return render_template('learn.html', visited=visited)
 
+@app.route('/reset')
+def reset():
+    global visited
+    visited = dict()
+    return render_template('learn.html', visited=visited)
+
 @app.route('/learn/<idx>')
 def learn_idx(idx):
     global test_scores

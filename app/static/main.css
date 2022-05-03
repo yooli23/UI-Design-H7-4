@@ -15,6 +15,8 @@ li{
 }
 .btn:hover{background-color: rgb(53, 168, 250) !important;}
 
+#submit:hover{background-color: limegreen !important;}
+
 /* learn page */
 
 .learn-button{
@@ -101,10 +103,54 @@ li{
     position: relative;
     animation: spin 15s infinite linear;
 }
-  
+
 .test-btn {
     width: 100%;
     height: 100%;
 }
-    
+
+#imgfluid {
+    position: relative;
+}
+#question-text {
+    font-size: x-large;
+}
+.reset-btn{
+    width: 40%;
+}
+
   
+
+.test-intro{
+    /* color: rgb(4, 141, 242); */
+    /* border: 1px solid darkslateblue; */
+    border: none !important;
+    padding: 20px;
+    font-size: 1.5rem;
+    color: dimgrey;
+    margin-bottom: 30px;
+}
+
+.custom-ui-widget .ui-dialog-titlebar {
+    background: rgb(4, 141, 242);
+    color: white;
+} 
+
+.widget-yes:hover {
+    background-color: lightgrey !important;
+}
+
+#test-title {
+    color: grey;
+    font-size: 30px;
+}
+.reset:hover {
+    background-color: silver !important;
+}
+/* finish page */
+.set-width{
+    width: 120px !important;
+}
+.set-width-small{
+    width: 100px !important;
+}
