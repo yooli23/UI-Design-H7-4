@@ -147,3 +147,10 @@ li{
 .reset:hover {
     background-color: silver !important;
 }
+/* finish page */
+.set-width{
+    width: 120px !important;
+}
+.set-width-small{
+    width: 100px !important;
+}
