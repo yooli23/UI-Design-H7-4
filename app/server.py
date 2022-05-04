@@ -12,8 +12,8 @@ test_data = [
                          'which one correctly indicates the top face?',
         'question_imgs': ['test-images/test1.jpg'],
         'answer_options': ['test-images/test1_a.jpg',
-                        'test-images/test1_b.jpg',
-                        'test-images/test1_c.jpg'],
+                           'test-images/test1_b.jpg',
+                           'test-images/test1_c.jpg'],
         'image_answer': True,
         'radio': True
     },
@@ -28,8 +28,8 @@ test_data = [
         'question_text': 'Which is a possible net of this cube? \nRemark: grey means unkown.',
         'question_imgs': ['test-images/test3.jpg'],
         'answer_options': ['test-images/test3_a.jpg',
-                        'test-images/test3_b.jpg',
-                        'test-images/test3_c.jpg'],
+                           'test-images/test3_b.jpg',
+                           'test-images/test3_c.jpg'],
         'image_answer': True,
         'radio': True
     },
@@ -127,7 +127,7 @@ def test_idx(idx):
 def test_finish():
     global test_scores
     print(test_scores)
-    return render_template('test_finish.html', data={"score" : str(100*test_scores/float(len(test_data)))})
+    return render_template('test_finish.html', data={"score": str(100 * test_scores / float(len(test_data)))})
 
 
 # possible ajex function
@@ -142,7 +142,7 @@ def submit_answer():
     test_idx = json_data['index']
     user_answers = json_data['answers']
     user_answers.sort()
-    correct = 0 # default not correct
+    correct = 0  # default not correct
     if user_answers == test_answers[test_idx]:
         correct = 1
         test_scores += 1

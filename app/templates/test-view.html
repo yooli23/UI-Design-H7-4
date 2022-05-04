@@ -13,6 +13,7 @@
         $("#question-text").text(data["question_text"]);
         $('#submit-mesg').hide();
         $("#question-img").attr('src', `/static/${data["question_imgs"][0]}`);
+        $("#question-img").attr('alt', `question_img`);
         if (data["last"]){
             $("#next-test").text("Get Score");
             // add link to next exercise
@@ -135,7 +136,7 @@
                         <span id="${ix}" class="test-message"></span>
                         <label>
                             <input name="group" value="${ix}" type="radio" />
-                            <span><img src="/static/${option}" alt="" width="210" height="140"></span>
+                            <span><img src="/static/${option}" alt=${"option"+ix} width="210" height="140"></span>
                         </label>
                     </p>
                     `);
