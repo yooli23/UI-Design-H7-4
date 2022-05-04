@@ -5,12 +5,17 @@
 <script>
     // <iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/vkqxgp9e/width/800/height/400/border/999999/sfsb/true/szb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
   let data = {{data|tojson}};
-  let iframe1 = 'https://www.geogebra.org/material/iframe/id/';
-  let iframe2 = '/width/800/height/400/border/999999/sfsb/true/szb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false'
   console.log(data);
   $(document).ready(() => {
     $('#ggb-element').empty();
-    $('#ggb-element').append(`<iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/${data['material_id']}/width/800/height/400/border/999999/sfsb/true/szb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="800" height="400" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0">
+    $('#ggb-element').append(`<iframe scrolling="no" 
+                                      alt="${data['name']}"+"_frame"
+                                      src="https://www.geogebra.org/material/iframe/id/${data['material_id']}/width/800/height/400/border/999999/sfsb/true/szb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false"
+                                      width="800"
+                                      height="400"
+                                      allowfullscreen
+                                      style="border: 1pxsolid #e4e4e4;border-radius: 4px;"
+                                      frameborder="0">
                             `);
     $("h4").text(data["name"]);
     if (parseInt(data["id"]) == 0){
@@ -29,6 +34,7 @@
     // map corresponding images to learning exercises
     $("#learn-gif").attr('src', `/static/${data["transform_gif"]}`);
     $("#learn-img").attr('src', `/static/${data["net_image"]}`);
+    $("#learn-img").attr('alt', `${data["name"]}`);
     $("#learn-title").text(`${data["name"]} exercise`);
     
   });
