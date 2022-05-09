@@ -12,8 +12,8 @@ Solid-Net Transformation.
 - Kendall Downend
 
 ## Start App:
-```python3 -m pip install flask```
-```cd app/```
+```python3 -m pip install flask```<br/>
+```cd app/```<br/>
 ```python3 app.py```
 
 ## Branches:
