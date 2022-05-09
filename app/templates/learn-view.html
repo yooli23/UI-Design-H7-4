@@ -18,19 +18,20 @@
                                       frameborder="0">
                             `);
     $("h4").text(data["name"]);
-    if (parseInt(data["id"]) == 0){
-      // remove last-net button for first exercise
-      $("#last-net").remove();
-    }else if(data["last"]){
-      // remove next-net button from last learning exercise
-      $("#next-net").remove();
-    }
     // add link to previous exercise
     $("#last-net").attr('href', `/learn/${parseInt(data["id"])-1}`);
     
     // add link to next exercise
     $("#next-net").attr('href', `/learn/${parseInt(data["id"])+1}`);
-
+    if (parseInt(data["id"]) == 0){
+      // remove last-net button for first exercise
+      $("#last-net").removeAttr('href');
+      $('#last-net').addClass('disabled');
+    }else if(data["last"]){
+      // remove next-net button from last learning exercise
+      $("#next-net").removeAttr('href');
+      $('#next-net').addClass('disabled');
+    }
     // map corresponding images to learning exercises
     $("#learn-gif").attr('src', `/static/${data["transform_gif"]}`);
     $("#learn-img").attr('src', `/static/${data["net_image"]}`);
